@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<h1 class="h3 mb-4 text-gray-800">Tambah Batu</h1>
 	<!-- Page Heading -->
-	<?php echo form_open_multipart('index.php/shopp/product_add_act'); ?>
+	<?php echo form_open_multipart('index.php/shopp/do_upload'); ?>
 		<div class="form-group">
 			<label>Nama Barang</label>	
 			<input type="text" class="form-control" name="nama_barang">
@@ -22,7 +22,7 @@
 			<label>Deskripsi Barang</label>
 			<input type="text" class="form-control" name="desk_barang">
 		</div>
-		<button type="submit" class="btn btn-primary">Submit</button>
+		<input type="submit" value="upload" class="btn-primary">
 		<a class="btn btn-warning" href="<?= base_url('index.php/shopp/list_barang') ?>">Batal</a>
-	<? echo form_close(); ?>
+		</form>
 </div>

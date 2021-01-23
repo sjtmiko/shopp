@@ -30,34 +30,14 @@ class Shopp extends CI_Controller {
 		$this->load->view('layout/wrapper',$data);
     }
 
-    public function product_add_act(){
-      $nama_barang = $this->input->post('nama_barang'); 
-      $jenis_barang = $this->input->post('jenis_barang');
-			$uk_barang = $this->input->post('uk_barang');
-      $desk_barang = $this->input->post('desk_barang');
-      $foto_barang = $_FILES['foto_barang'];
-      if($foto_barang=' '){
-        echo "die";
-      }
-      else{
-        $config['upload_path'] = './foto';
-        $config['allowed_types'] = 'jpg|png|jpeg';
-
-        $this->load->library('upload',$config);
-        if($this->upload->do_upload('file')){
-          $foto_barang = $this->upload->data('file_name');
-        }else{
-          echo "upload gagal";
-        }
-      }
-      $data = array (
-          'nama_barang' => $nama_barang,
-          'jenis_barang' => $jenis_barang,
-          'uk_barang' => $uk_barang,
-          'desk_barang' => $desk_barang,
-          'foto_barang' => $foto_barang
-      );
-    	$this->db->insert('barang_stk', $data);
-      redirect('index.php/Shopp/list_barang');
+    public function do_upload(){
+     $post = $this->input->post();
+     $this->id = uniqid();
+      $this->nama_barang = $post["nama_barang"];
+      $this->jenis_barang = $post["jenis_barang"];
+      $this ->foto_barang = $this->_uploadImage();
+      $this->uk_barang = $post["uk_barang"];
+      $this->desk_barang = $post["desk_barang"];
+      $this->db->insert('barang_stk', $this);
     }
 }
